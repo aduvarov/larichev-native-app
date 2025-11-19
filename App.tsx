@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, Dimensions, StyleSheet, Text, TextInput, View } from 'react-native'
 
 const ourStyle = {
     textStyle: { color: 'blue' },
@@ -7,6 +7,8 @@ const ourStyle = {
 const textStyle = { color: 'magenta' }
 
 export default function App() {
+    const width = Dimensions.get('window').width
+    const gap = 10
     return (
         <View style={styles.container}>
             <View style={styles.top}>
@@ -19,13 +21,13 @@ export default function App() {
                     alignItems: 'flex-end',
                     height: 500,
                     flexDirection: 'row',
-                    gap: 10,
+                    gap: gap,
                     flexWrap: 'wrap',
                 }}>
                 <View
                     style={{
                         backgroundColor: 'tomato',
-                        width: '40%',
+                        width: width / 2 - gap / 2,
                         height: 100,
                     }}>
                     <Text>1</Text>
@@ -33,7 +35,7 @@ export default function App() {
                 <View
                     style={{
                         backgroundColor: 'purple',
-                        width: '40%',
+                        width: width / 2 - gap / 2,
                         height: 100,
                     }}>
                     <Text>2</Text>
@@ -41,7 +43,7 @@ export default function App() {
                 <View
                     style={{
                         backgroundColor: 'green',
-                        width: '40%',
+                        width: width / 2 - gap / 2,
                         height: 100,
                     }}>
                     <Text>3</Text>
