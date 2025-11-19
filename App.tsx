@@ -1,5 +1,13 @@
 import { StatusBar } from 'expo-status-bar'
-import { Button, Dimensions, StyleSheet, Text, TextInput, View } from 'react-native'
+import {
+    Button,
+    Dimensions,
+    Pressable,
+    StyleSheet,
+    Text,
+    TextInput,
+    View,
+} from 'react-native'
 
 const ourStyle = {
     textStyle: { color: 'blue' },
@@ -11,43 +19,14 @@ export default function App() {
     const gap = 10
     return (
         <View style={styles.container}>
-            <View style={styles.top}>
-                <Text style={styles.textStyle}>Моё первое приложение</Text>
-                <Button title="Я кнопка" />
-            </View>
-            <View
-                style={{
-                    backgroundColor: 'yellow',
-                    alignItems: 'flex-end',
-                    height: 500,
-                    flexDirection: 'row',
-                    gap: gap,
-                    flexWrap: 'wrap',
-                }}>
-                <View
-                    style={{
-                        backgroundColor: 'tomato',
-                        width: width / 2 - gap / 2,
-                        height: 100,
-                    }}>
-                    <Text>1</Text>
+            <View style={styles.content}>
+                <Text>PurpleSchool</Text>
+                <View style={styles.form}>
+                    <TextInput style={styles.input} />
+                    <TextInput style={styles.input} />
+                    <Button title="Войти" />
                 </View>
-                <View
-                    style={{
-                        backgroundColor: 'purple',
-                        width: width / 2 - gap / 2,
-                        height: 100,
-                    }}>
-                    <Text>2</Text>
-                </View>
-                <View
-                    style={{
-                        backgroundColor: 'green',
-                        width: width / 2 - gap / 2,
-                        height: 100,
-                    }}>
-                    <Text>3</Text>
-                </View>
+                <Text>Восстановить пароль</Text>
             </View>
         </View>
     )
@@ -55,15 +34,17 @@ export default function App() {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 70,
+        justifyContent: 'center',
+        flex: 1,
+        padding: 55,
     },
-    textStyle: {
-        color: 'green',
-        fontSize: 24,
-        borderWidth: 1,
-        borderColor: 'red',
+    content: {
+        alignItems: 'center',
+        gap: 50,
     },
-    top: {
-        flexDirection: 'row',
+    form: {
+        alignSelf: 'stretch',
+        gap: 16,
     },
+    input: { backgroundColor: '#2E2D3D' },
 })
