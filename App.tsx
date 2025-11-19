@@ -19,21 +19,21 @@ export default function App() {
                     alignItems: 'flex-end',
                     height: 500,
                     flexDirection: 'row',
+                    gap: 10,
+                    flexWrap: 'wrap',
                 }}>
                 <View
                     style={{
                         backgroundColor: 'tomato',
-                        flexBasis: 100,
+                        width: '40%',
                         height: 100,
-                        flexGrow: 1,
                     }}>
                     <Text>1</Text>
                 </View>
                 <View
                     style={{
                         backgroundColor: 'purple',
-                        flexBasis: 100,
-                        flexGrow: 1,
+                        width: '40%',
                         height: 100,
                     }}>
                     <Text>2</Text>
@@ -41,8 +41,7 @@ export default function App() {
                 <View
                     style={{
                         backgroundColor: 'green',
-                        flexBasis: 100,
-                        flexGrow: 1,
+                        width: '40%',
                         height: 100,
                     }}>
                     <Text>3</Text>
