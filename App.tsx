@@ -19,24 +19,34 @@ export default function App() {
                     alignItems: 'flex-end',
                     height: 500,
                     flexDirection: 'row',
-                    flexWrap: 'wrap',
-                    alignContent: 'center',
                 }}>
-                <View style={{ backgroundColor: 'tomato', width: '50%', height: 100 }}>
+                <View
+                    style={{
+                        backgroundColor: 'tomato',
+                        flexBasis: 100,
+                        height: 100,
+                        flexGrow: 1,
+                    }}>
                     <Text>1</Text>
                 </View>
                 <View
                     style={{
                         backgroundColor: 'purple',
-                        width: '50%',
+                        flexBasis: 100,
+                        flexGrow: 1,
                         height: 100,
-                    }}></View>
+                    }}>
+                    <Text>2</Text>
+                </View>
                 <View
                     style={{
                         backgroundColor: 'green',
-                        width: '50%',
+                        flexBasis: 100,
+                        flexGrow: 1,
                         height: 100,
-                    }}></View>
+                    }}>
+                    <Text>3</Text>
+                </View>
             </View>
         </View>
     )
