@@ -18,25 +18,24 @@ export default function App() {
                     backgroundColor: 'yellow',
                     alignItems: 'flex-end',
                     height: 500,
-                    justifyContent: 'space-between',
                     flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    alignContent: 'center',
                 }}>
-                <View style={{ backgroundColor: 'tomato', height: 100 }}>
+                <View style={{ backgroundColor: 'tomato', width: '50%', height: 100 }}>
                     <Text>1</Text>
                 </View>
                 <View
                     style={{
                         backgroundColor: 'purple',
-                        width: 100,
+                        width: '50%',
                         height: 100,
-                        alignSelf: 'flex-start',
                     }}></View>
                 <View
                     style={{
                         backgroundColor: 'green',
-                        width: 100,
+                        width: '50%',
                         height: 100,
-                        alignSelf: 'center',
                     }}></View>
             </View>
         </View>
