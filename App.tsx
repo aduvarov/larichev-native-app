@@ -7,6 +7,7 @@ import {
     Text,
     TextInput,
     View,
+    Image,
 } from 'react-native'
 
 const ourStyle = {
@@ -20,6 +21,11 @@ export default function App() {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
+                <Image
+                    style={styles.logo}
+                    source={require('./assets/logo.png')}
+                    resizeMode="contain"
+                />
                 <Text>PurpleSchool</Text>
                 <View style={styles.form}>
                     <TextInput style={styles.input} />
@@ -37,6 +43,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
         padding: 55,
+        backgroundColor: '#16171D',
     },
     content: {
         alignItems: 'center',
@@ -47,4 +54,7 @@ const styles = StyleSheet.create({
         gap: 16,
     },
     input: { backgroundColor: '#2E2D3D' },
+    logo: {
+        width: 220,
+    },
 })
