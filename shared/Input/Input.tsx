@@ -1,16 +1,19 @@
 import React from 'react'
 import { StyleSheet, TextInput, TextInputProps } from 'react-native'
+import { Colors, Radius } from '../tokens'
 
 export const Input = (props: TextInputProps) => {
-    return <TextInput style={styles.input} {...props} placeholderTextColor={'#AFB2BF'} />
+    return (
+        <TextInput style={styles.input} {...props} placeholderTextColor={Colors.gray} />
+    )
 }
 
 const styles = StyleSheet.create({
     input: {
         height: 58,
-        backgroundColor: '#2E2D3D',
+        backgroundColor: Colors.violetDark,
         paddingHorizontal: 24,
-        borderRadius: 10,
+        borderRadius: Radius.r10,
         fontSize: 16,
     },
 })
