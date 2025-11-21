@@ -5,10 +5,10 @@ import {
     Pressable,
     StyleSheet,
     Text,
-    TextInput,
     View,
     Image,
 } from 'react-native'
+import { Input } from './shared/Input/Input'
 
 const ourStyle = {
     textStyle: { color: 'blue' },
@@ -26,10 +26,9 @@ export default function App() {
                     source={require('./assets/logo.png')}
                     resizeMode="contain"
                 />
-                <Text>PurpleSchool</Text>
                 <View style={styles.form}>
-                    <TextInput style={styles.input} />
-                    <TextInput style={styles.input} />
+                    <Input placeholder="Email" />
+                    <Input placeholder="Пароль" />
                     <Button title="Войти" />
                 </View>
                 <Text>Восстановить пароль</Text>
