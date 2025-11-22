@@ -13,6 +13,8 @@ import {
 import { Input } from './shared/Input/Input'
 import { Colors, Gaps } from './shared/tokens'
 import { Button } from './shared/Button/Button'
+import { ErrorNotification } from './shared/ErrorNotification/ErrorNotification'
+import { useState } from 'react'
 
 const ourStyle = {
     textStyle: { color: 'blue' },
@@ -20,28 +22,14 @@ const ourStyle = {
 const textStyle = { color: 'magenta' }
 
 export default function App() {
-    const width = Dimensions.get('window').width
-
+    const [error, setError] = useState<string | undefined>()
     const alert = () => {
-        // Alert
-        Alert.alert('Ошибка', 'Неверный логин или пароль', [
-            {
-                text: 'Плохо',
-                onPress: () => {},
-                style: 'cancel',
-            },
-        ])
-        // if (Platform.OS === 'android') {
-        //     ToastAndroid.showWithGravity(
-        //         'Неверный логин или пароль',
-        //         ToastAndroid.SHORT,
-        //         ToastAndroid.CENTER
-        //     )
-        // }
+        setError('Неверный логин или пароль')
     }
 
     return (
         <View style={styles.container}>
+            <ErrorNotification error={error} />
             <View style={styles.content}>
                 <Image
                     style={styles.logo}
