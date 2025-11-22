@@ -10,8 +10,6 @@ import {
 } from 'react-native'
 import { Input } from './shared/Input/Input'
 import { Colors, Gaps } from './shared/tokens'
-import EyeClosedIcon from './assets/icons/eye-closed'
-import EyeOpenedIcon from './assets/icons/eye-opened'
 
 const ourStyle = {
     textStyle: { color: 'blue' },
@@ -31,12 +29,10 @@ export default function App() {
                 />
                 <View style={styles.form}>
                     <Input placeholder="Email" />
-                    <Input placeholder="Пароль" />
+                    <Input isPassword placeholder="Пароль" />
                     <Button title="Войти" />
                 </View>
                 <Text>Восстановить пароль</Text>
-                <EyeClosedIcon />
-                <EyeOpenedIcon />
             </View>
         </View>
     )
