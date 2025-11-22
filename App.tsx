@@ -1,5 +1,15 @@
 import { StatusBar } from 'expo-status-bar'
-import { Dimensions, Pressable, StyleSheet, Text, View, Image } from 'react-native'
+import {
+    Dimensions,
+    Pressable,
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    Alert,
+    ToastAndroid,
+    Platform,
+} from 'react-native'
 import { Input } from './shared/Input/Input'
 import { Colors, Gaps } from './shared/tokens'
 import { Button } from './shared/Button/Button'
@@ -11,7 +21,25 @@ const textStyle = { color: 'magenta' }
 
 export default function App() {
     const width = Dimensions.get('window').width
-    const gap = 10
+
+    const alert = () => {
+        // Alert
+        Alert.alert('Ошибка', 'Неверный логин или пароль', [
+            {
+                text: 'Плохо',
+                onPress: () => {},
+                style: 'cancel',
+            },
+        ])
+        // if (Platform.OS === 'android') {
+        //     ToastAndroid.showWithGravity(
+        //         'Неверный логин или пароль',
+        //         ToastAndroid.SHORT,
+        //         ToastAndroid.CENTER
+        //     )
+        // }
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -23,7 +51,7 @@ export default function App() {
                 <View style={styles.form}>
                     <Input placeholder="Email" />
                     <Input isPassword placeholder="Пароль" />
-                    <Button text={'Войти'} />
+                    <Button text={'Войти'} onPress={alert} />
                 </View>
                 <Text>Восстановить пароль</Text>
             </View>
