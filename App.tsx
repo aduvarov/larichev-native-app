@@ -25,6 +25,9 @@ export default function App() {
     const [error, setError] = useState<string | undefined>()
     const alert = () => {
         setError('Неверный логин или пароль')
+        setTimeout(() => {
+            setError(undefined)
+        }, 4000)
     }
 
     return (

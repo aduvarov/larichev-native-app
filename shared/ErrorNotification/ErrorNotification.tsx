@@ -1,16 +1,26 @@
-import { Dimensions, StyleSheet, Text, TextProps, View } from 'react-native'
+import { Animated, Dimensions, StyleSheet, Text, TextProps, View } from 'react-native'
 import { Colors, Fonts } from '../tokens'
 import { ErrorNotificationProps } from './ErrorNotification.props'
 import { useEffect, useState } from 'react'
 
 export const ErrorNotification = ({ error }: ErrorNotificationProps) => {
     const [isShown, setIsShown] = useState<boolean>(false)
+    const animatedValue = new Animated.Value(-100)
+
+    const onEnter = () => {
+        Animated.timing(animatedValue, {
+            duration: 300,
+            toValue: 0,
+            useNativeDriver: true,
+        }).start()
+    }
 
     useEffect(() => {
         if (!error) {
             return
         }
         setIsShown(true)
+
         const timerId = setTimeout(() => {
             setIsShown(false)
         }, 3000)
@@ -23,22 +33,21 @@ export const ErrorNotification = ({ error }: ErrorNotificationProps) => {
         return <></>
     }
     return (
-        <View style={styles.error}>
+        <Animated.View
+            style={{ ...styles.error, transform: [{ translateY: animatedValue }] }}
+            onLayout={onEnter}>
             <Text style={styles.errorText}>{error}</Text>
-        </View>
+        </Animated.View>
     )
 }
 
 const styles = StyleSheet.create({
     error: {
         position: 'absolute',
-        top: 40,
-        backgroundColor: Colors.red,
-        height: 100,
         width: Dimensions.get('window').width,
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: Colors.red,
         padding: 15,
+        top: 50,
     },
     errorText: {
         fontSize: Fonts.f16,
