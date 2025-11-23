@@ -1,27 +1,13 @@
-import { StatusBar } from 'expo-status-bar'
-import {
-    Dimensions,
-    Pressable,
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    Alert,
-    ToastAndroid,
-    Platform,
-} from 'react-native'
+// import { StatusBar } from 'expo-status-bar'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import { Input } from './shared/Input/Input'
 import { Colors, Gaps } from './shared/tokens'
 import { Button } from './shared/Button/Button'
 import { ErrorNotification } from './shared/ErrorNotification/ErrorNotification'
 import { useState } from 'react'
 
-const ourStyle = {
-    textStyle: { color: 'blue' },
-}
-const textStyle = { color: 'magenta' }
-
 export default function App() {
+    console.log('demo')
     const [error, setError] = useState<string | undefined>()
     const alert = () => {
         setError('Неверный логин или пароль')

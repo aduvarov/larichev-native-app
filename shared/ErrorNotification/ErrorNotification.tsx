@@ -1,4 +1,4 @@
-import { Animated, Dimensions, StyleSheet, Text, TextProps, View } from 'react-native'
+import { Animated, Dimensions, StyleSheet, Text } from 'react-native'
 import { Colors, Fonts } from '../tokens'
 import { ErrorNotificationProps } from './ErrorNotification.props'
 import { useEffect, useState } from 'react'
@@ -35,7 +35,8 @@ export const ErrorNotification = ({ error }: ErrorNotificationProps) => {
     return (
         <Animated.View
             style={{ ...styles.error, transform: [{ translateY: animatedValue }] }}
-            onLayout={onEnter}>
+            onLayout={onEnter}
+        >
             <Text style={styles.errorText}>{error}</Text>
         </Animated.View>
     )

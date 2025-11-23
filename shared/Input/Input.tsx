@@ -19,8 +19,9 @@ export const Input = (props: TextInputProps & { isPassword?: boolean }) => {
                 <Pressable
                     style={styles.eyeIcon}
                     onPress={() => {
-                        setIsPasswordVisible(state => !state)
-                    }}>
+                        setIsPasswordVisible((state) => !state)
+                    }}
+                >
                     {isPasswordVisible ? <EyeOpenedIcon /> : <EyeClosedIcon />}
                 </Pressable>
             )}
