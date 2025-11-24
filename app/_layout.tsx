@@ -43,13 +43,14 @@ export default function RootLayout() {
                     headerShown: false,
                 }}
             >
-                <Stack.Screen name="index" />
+                {/* <Stack.Screen name="(app)/index" />
+                <Stack.Screen name="login" />
                 <Stack.Screen
                     name="restore"
                     options={{
                         presentation: 'modal',
                     }}
-                />
+                /> */}
             </Stack>
         </SafeAreaProvider>
     )

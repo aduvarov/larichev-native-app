@@ -8,7 +8,6 @@ import { useState } from 'react'
 import { CustomLink } from '../shared/CustomLink/CustomLink'
 
 export default function Login() {
-    console.log('demo')
     const [error, setError] = useState<string | undefined>()
     const alert = () => {
         setError('Неверный логин или пароль')
