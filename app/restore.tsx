@@ -1,27 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { Colors } from '../shared/tokens'
 import { Link } from 'expo-router'
 
 export default function Restore() {
     return (
-        <View style={styles.view}>
+        <View>
             <Link href={'/'}>
-                <Text style={styles.text}>Restore</Text>
+                <Text style={{ color: Colors.white }}>Restore</Text>
             </Link>
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    view: {
-        justifyContent: 'center',
-        alignContent: 'center',
-        flex: 1,
-    },
-    text: {
-        height: 200,
-        textAlign: 'center',
-        width: 200,
-        color: Colors.black,
-    },
-})
