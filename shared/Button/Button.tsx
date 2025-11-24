@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
     buttonText: {
         color: Colors.white,
         fontSize: Fonts.f18,
-        fontFamily: 'FiraSansSemiBold',
+        fontFamily: 'FiraSans',
     },
 })
