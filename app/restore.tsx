@@ -14,9 +14,9 @@ export default function Restore() {
 
 const styles = StyleSheet.create({
     view: {
-        height: 200,
         justifyContent: 'center',
         alignContent: 'center',
+        flex: 1,
     },
     text: {
         height: 200,
