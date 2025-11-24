@@ -49,7 +49,7 @@
         }
       ],
       "expo-router"
-    ]
-  },
-  "$schema": "purpleschool"
+    ],
+    "schema": "purpleschool"
+  }
 }
