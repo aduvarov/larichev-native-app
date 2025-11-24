@@ -1,18 +1,23 @@
 import { Stack } from 'expo-router'
+import { Colors } from '../shared/tokens'
 
 export default function RootLayout() {
-    return <Stack />
+    return (
+        <Stack
+            screenOptions={{
+                contentStyle: {
+                    backgroundColor: Colors.black,
+                },
+            }}
+        >
+            <Stack.Screen name="index" />
+            <Stack.Screen
+                name="restore"
+                options={{
+                    presentation: 'modal',
+                    headerShown: false,
+                }}
+            />
+        </Stack>
+    )
 }
-
-// import { Slot } from 'expo-router'
-// import { Text } from 'react-native'
-
-// export default function RootLayout() {
-//     return (
-//         <>
-//             <Text>Header</Text>
-//             <Slot />
-//             <Text>Footer</Text>
-//         </>
-//     )
-// }
