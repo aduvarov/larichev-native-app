@@ -96,6 +96,7 @@ export default [
             // ======================
             // TYPESCRIPT ПРАВИЛА
             // ======================
+            '@typescript-eslint/no-unused-expressions': 'off',
             '@typescript-eslint/no-empty-function': 'off', // Разрешаем пустые функции
             '@typescript-eslint/interface-name-prefix': 'off', // Отключаем префикс 'I' для интерфейсов
             '@typescript-eslint/ban-types': 'off', // Разрешаем все типы

@@ -5,7 +5,6 @@ import {
     PressableProps,
     StyleSheet,
     Text,
-    View,
 } from 'react-native'
 import { Colors, Fonts, Radius } from '../tokens'
 
@@ -40,7 +39,8 @@ export const Button = ({ text, ...props }: PressableProps & { text: string }) =>
                 style={{
                     ...styles.button,
                     backgroundColor: color,
-                }}>
+                }}
+            >
                 <Text style={styles.buttonText}>{text}</Text>
             </Animated.View>
         </Pressable>
@@ -57,5 +57,6 @@ const styles = StyleSheet.create({
     buttonText: {
         color: Colors.white,
         fontSize: Fonts.f18,
+        fontFamily: 'FiraSansSemiBold',
     },
 })
