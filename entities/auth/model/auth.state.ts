@@ -7,15 +7,16 @@ import { atom } from 'jotai'
 
 const storage = createJSONStorage<AuthState>(() => AsyncStorage)
 
-export const authAtom = atomWithStorage<AuthState>(
-    'auth',
-    {
-        accessToken: null,
-        isLoading: false,
-        error: null,
-    },
-    storage,
-)
+const INITIAL_STATE = {
+    accessToken: null,
+    isLoading: false,
+    error: null,
+}
+export const authAtom = atomWithStorage<AuthState>('auth', INITIAL_STATE, storage)
+
+export const logoutAtom = atom(null, (_get, set) => {
+    set(authAtom, INITIAL_STATE)
+})
 
 export const loginAtom = atom(
     (get) => get(authAtom),

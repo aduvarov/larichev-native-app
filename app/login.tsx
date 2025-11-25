@@ -4,16 +4,33 @@ import { Input } from '../shared/Input/Input'
 import { Colors, Gaps } from '../shared/tokens'
 import { Button } from '../shared/Button/Button'
 import { ErrorNotification } from '../shared/ErrorNotification/ErrorNotification'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CustomLink } from '../shared/CustomLink/CustomLink'
+import { loginAtom } from '../entities/auth/model/auth.state'
+import { useAtom } from 'jotai'
 
 export default function Login() {
     const [error, setError] = useState<string | undefined>()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const [auth, login] = useAtom(loginAtom)
+
     const alert = () => {
         setError('Неверный логин или пароль')
         setTimeout(() => {
             setError(undefined)
         }, 4000)
+    }
+
+    useEffect(() => {
+        console.log('auth changed', auth)
+    }, [auth])
+
+    const loginUser = () => {
+        console.log(email, password, auth)
+        login({ email: email, password: password })
+        setPassword('')
     }
 
     return (
@@ -26,9 +43,14 @@ export default function Login() {
                     resizeMode="contain"
                 />
                 <View style={styles.form}>
-                    <Input placeholder="Email" />
-                    <Input isPassword placeholder="Пароль" />
-                    <Button text={'Войти'} onPress={alert} />
+                    <Input placeholder="Email" onChangeText={setEmail} value={email} />
+                    <Input
+                        isPassword
+                        placeholder="Пароль"
+                        onChangeText={setPassword}
+                        value={password}
+                    />
+                    <Button text={'Войти'} onPress={loginUser} />
                 </View>
                 <CustomLink href={'/restore'} text={'Восстановить пароль'} />
             </View>
