@@ -8,34 +8,41 @@ import { useEffect, useState } from 'react'
 import { CustomLink } from '../shared/CustomLink/CustomLink'
 import { loginAtom } from '../entities/auth/model/auth.state'
 import { useAtom } from 'jotai'
+import { router } from 'expo-router'
 
 export default function Login() {
-    const [error, setError] = useState<string | undefined>()
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-    const [auth, login] = useAtom(loginAtom)
-
-    const alert = () => {
-        setError('Неверный логин или пароль')
-        setTimeout(() => {
-            setError(undefined)
-        }, 4000)
-    }
+    const [localError, setLocalError] = useState<string | undefined>()
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+    const [{ accessToken, error }, login] = useAtom(loginAtom)
 
     useEffect(() => {
-        console.log('auth changed', auth)
-    }, [auth])
+        if (error) {
+            setLocalError(error)
+        }
+    }, [error])
 
-    const loginUser = () => {
-        console.log(email, password, auth)
-        login({ email: email, password: password })
-        setPassword('')
+    useEffect(() => {
+        if (accessToken) {
+            router.replace('/(app)')
+        }
+    })
+
+    const submit = async () => {
+        if (!email) {
+            return setLocalError('Не введён Email')
+        }
+        if (!password) {
+            return setLocalError('Не введён пароль')
+        }
+        login({ email, password })
+
+        // setPassword('')
     }
 
     return (
         <View style={styles.container}>
-            <ErrorNotification error={error} />
+            <ErrorNotification error={localError} />
             <View style={styles.content}>
                 <Image
                     style={styles.logo}
@@ -50,7 +57,7 @@ export default function Login() {
                         onChangeText={setPassword}
                         value={password}
                     />
-                    <Button text={'Войти'} onPress={loginUser} />
+                    <Button text={'Войти'} onPress={submit} />
                 </View>
                 <CustomLink href={'/restore'} text={'Восстановить пароль'} />
             </View>

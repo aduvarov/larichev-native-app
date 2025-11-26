@@ -7,5 +7,6 @@ export default function AppLayout() {
     if (!accessToken) {
         return <Redirect href={'/login'} />
     }
+
     return <Stack></Stack>
 }

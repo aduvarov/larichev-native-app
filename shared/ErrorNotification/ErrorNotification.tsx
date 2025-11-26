@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         backgroundColor: Colors.red,
         padding: 15,
-        top: 50,
+        top: 0,
     },
     errorText: {
         fontSize: Fonts.f16,

@@ -15,6 +15,7 @@ const INITIAL_STATE = {
 export const authAtom = atomWithStorage<AuthState>('auth', INITIAL_STATE, storage)
 
 export const logoutAtom = atom(null, (_get, set) => {
+    console.log('inside logoutAtom')
     set(authAtom, INITIAL_STATE)
 })
 
@@ -27,9 +28,11 @@ export const loginAtom = atom(
                 email,
                 password,
             })
+            console.log('AUTH_SUCESS: ' + data)
             set(authAtom, { isLoading: false, accessToken: data.accessToken, error: null })
         } catch (error) {
             if (error instanceof AxiosError) {
+                console.log('AUTH_ERROR: ' + error.response?.data.message)
                 set(authAtom, {
                     isLoading: false,
                     accessToken: null,
