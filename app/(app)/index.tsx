@@ -2,18 +2,22 @@ import { Text, View } from 'react-native'
 import { Colors } from '../../shared/tokens'
 import { CustomLink } from '../../shared/CustomLink/CustomLink'
 import { profileAtom } from '../../entities/user/model/user.state'
-import { useAtom, useSetAtom } from 'jotai'
-import { logoutAtom } from '../../entities/auth/model/auth.state'
-import { Button } from '../../shared/Button/Button'
+import { useAtom, useAtomValue } from 'jotai'
+import { authAtom } from '../../entities/auth/model/auth.state'
+import { useEffect } from 'react'
+import { router, useRootNavigationState } from 'expo-router'
 
 export default function AppLayout() {
     const [profile] = useAtom(profileAtom)
-    const logout = useSetAtom(logoutAtom)
+    const { accessToken } = useAtomValue(authAtom)
+    const state = useRootNavigationState()
 
-    const logoutUser = () => {
-        console.log('logout')
-        logout()
-    }
+    useEffect(() => {
+        if (!state?.key) return
+        if (!accessToken) {
+            router.replace('/login')
+        }
+    }, [accessToken])
 
     return (
         <View>
@@ -21,7 +25,6 @@ export default function AppLayout() {
             <CustomLink href={'/login'} text={'Логин'} />
             <CustomLink href={'/restore'} text={'Восстановить пароль'} />
             <CustomLink href={'/course/typescript'} text={'Курс ts'} />
-            <Button text={'Logout'} onPress={logoutUser} />
         </View>
     )
 }
