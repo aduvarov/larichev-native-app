@@ -33,7 +33,7 @@ export const loginAtom = atom(
                 (resolve) =>
                     setTimeout(() => {
                         resolve()
-                    }, 2000), // Имитация задержки для отрисовки индикатора (тест)
+                    }, 100), // Имитация задержки для отрисовки индикатора (тест)
             )
             // Отправляем пост запрос на сервер с логином и паролем
             const { data } = await axios.post<IAuthResponse>(API.login, {
