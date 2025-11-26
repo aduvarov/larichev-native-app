@@ -16,11 +16,13 @@ export const ErrorNotification = ({ error }: ErrorNotificationProps) => {
     }
 
     useEffect(() => {
+        // Если ошибка очистилась, ничего не делаем
         if (!error) {
             return
         }
-        setIsShown(true)
 
+        // Если появляется ошибка показыавем её на 3 секунды
+        setIsShown(true)
         const timerId = setTimeout(() => {
             setIsShown(false)
         }, 3000)

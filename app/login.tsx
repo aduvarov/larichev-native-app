@@ -11,23 +11,26 @@ import { useAtom } from 'jotai'
 import { router } from 'expo-router'
 
 export default function Login() {
-    const [localError, setLocalError] = useState<string | undefined>()
-    const [email, setEmail] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
-    const [{ accessToken, error }, login] = useAtom(loginAtom)
+    const [localError, setLocalError] = useState<string | undefined>() // Лоальное состояние для ошибок
+    const [email, setEmail] = useState<string>('') // Состояние для хранения email
+    const [password, setPassword] = useState<string>('') // Состояние для хранения пароля
+    const [{ accessToken, isLoading, error }, login] = useAtom(loginAtom) // Вытаскиваем атом авторизации
 
+    // Если случится ошибка, отобразить её
     useEffect(() => {
         if (error) {
             setLocalError(error)
         }
     }, [error])
 
+    // Если появился токен, перенаправить на гланую
     useEffect(() => {
         if (accessToken) {
             router.replace('/(app)')
         }
     })
 
+    // Запускаем авторизацию с данными из формы
     const submit = async () => {
         if (!email) {
             return setLocalError('Не введён Email')
@@ -36,8 +39,6 @@ export default function Login() {
             return setLocalError('Не введён пароль')
         }
         login({ email, password })
-
-        // setPassword('')
     }
 
     return (
@@ -57,7 +58,7 @@ export default function Login() {
                         onChangeText={setPassword}
                         value={password}
                     />
-                    <Button text={'Войти'} onPress={submit} />
+                    <Button text={'Войти'} onPress={submit} isLoading={isLoading} />
                 </View>
                 <CustomLink href={'/restore'} text={'Восстановить пароль'} />
             </View>

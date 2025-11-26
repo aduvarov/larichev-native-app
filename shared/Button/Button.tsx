@@ -1,4 +1,5 @@
 import {
+    ActivityIndicator,
     Animated,
     GestureResponderEvent,
     Pressable,
@@ -8,7 +9,11 @@ import {
 } from 'react-native'
 import { Colors, Fonts, Radius } from '../tokens'
 
-export const Button = ({ text, ...props }: PressableProps & { text: string }) => {
+export const Button = ({
+    text,
+    isLoading,
+    ...props
+}: PressableProps & { text: string; isLoading?: boolean }) => {
     const animatedValue = new Animated.Value(100)
     const color = animatedValue.interpolate({
         inputRange: [0, 100],
@@ -41,7 +46,9 @@ export const Button = ({ text, ...props }: PressableProps & { text: string }) =>
                     backgroundColor: color,
                 }}
             >
-                <Text style={styles.buttonText}>{text}</Text>
+                {/* Если пришёл isLoading вместо текста кнопки показываем АктивитиИндикатор } */}
+                {!isLoading && <Text style={styles.buttonText}>{text}</Text>}
+                {isLoading && <ActivityIndicator size="large" color={Colors.white} />}
             </Animated.View>
         </Pressable>
     )
