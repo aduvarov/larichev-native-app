@@ -4,6 +4,7 @@ import { useAtomValue } from 'jotai'
 import { authAtom } from '../../entities/auth/model/auth.state'
 import { Colors, Fonts } from '../../shared/tokens'
 import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton'
+import { CustomDrawer } from '../../entities/layout/ui/CustomDrawer/CustomDrawer'
 
 export default function AppLayout() {
     const { accessToken } = useAtomValue(authAtom)
@@ -13,6 +14,7 @@ export default function AppLayout() {
 
     return (
         <Drawer
+            drawerContent={(props) => <CustomDrawer {...props} />}
             screenOptions={({ navigation }) => ({
                 safeAreaInsets: { top: 0 }, // ← ключевое
 
