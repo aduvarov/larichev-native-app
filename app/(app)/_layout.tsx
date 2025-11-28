@@ -3,7 +3,7 @@ import { Drawer } from 'expo-router/drawer'
 import { useAtomValue } from 'jotai'
 import { authAtom } from '../../entities/auth/model/auth.state'
 import { Colors, Fonts } from '../../shared/tokens'
-import { Text } from 'react-native'
+import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton'
 
 export default function AppLayout() {
     const { accessToken } = useAtomValue(authAtom)
@@ -14,11 +14,15 @@ export default function AppLayout() {
     return (
         <Drawer
             screenOptions={({ navigation }) => ({
+                safeAreaInsets: { top: 0 }, // ← ключевое
+
                 headerStyle: {
                     backgroundColor: Colors.blackLight,
+                    shadowColor: Colors.blackLight,
+                    shadowOpacity: 0,
                 },
                 headerLeft: () => {
-                    return <Text>!!!</Text>
+                    return <MenuButton navigation={navigation} />
                 },
                 headerTitleStyle: {
                     color: Colors.white,
@@ -26,7 +30,7 @@ export default function AppLayout() {
                     fontSize: Fonts.f20,
                 },
                 headerTitleAlign: 'center',
-                sceneStyle: {
+                sceneContainerStyle: {
                     backgroundColor: Colors.black,
                 },
             })}
