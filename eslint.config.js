@@ -102,6 +102,7 @@ export default [
             '@typescript-eslint/ban-types': 'off', // Разрешаем все типы
             '@typescript-eslint/explicit-function-return-type': 'off', // Не требовать явный возвращаемый тип у функций
             '@typescript-eslint/explicit-module-boundary-types': 'off', // Не требовать типы у экспортов модулей
+            // '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-require-imports': [
                 'error',
                 {
