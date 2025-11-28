@@ -3,15 +3,23 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { Colors } from '../../../../shared/tokens'
 import { CustomLink } from '../../../../shared/CustomLink/CustomLink'
 import { CloseDrawer } from '../CloseDrawer/CloseDrawer'
-import { useSetAtom } from 'jotai'
+import { useAtom, useSetAtom } from 'jotai'
 import { logoutAtom } from '../../../auth/model/auth.state'
+import { loadProfileAtom } from '../../../user/model/user.state'
+import { useEffect } from 'react'
 
 export const CustomDrawer = (props: DrawerContentComponentProps) => {
     const logout = useSetAtom(logoutAtom)
+    const [profile, loadProfile] = useAtom(loadProfileAtom)
+
+    useEffect(() => {
+        loadProfile()
+    }, [])
+
     return (
         <DrawerContentScrollView {...props} contentContainerStyle={styles.scrollview}>
             <View style={styles.content}>
-                <Text>Text</Text>
+                <Text>{profile.profile?.name}</Text>
                 <CloseDrawer {...props} />
             </View>
             <View style={styles.footer}>
