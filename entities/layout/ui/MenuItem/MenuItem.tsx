@@ -3,30 +3,37 @@ import { Colors, Fonts, Gaps } from '../../../../shared/tokens'
 import { DrawerContentComponentProps } from '@react-navigation/drawer'
 import { ReactNode, useState } from 'react'
 
-type MenuItemProps = {
+interface MenuItemProps {
+    drawer: DrawerContentComponentProps
     icon: ReactNode
     text: string
     path: string
-} & Pick<DrawerContentComponentProps, 'navigation'>
+}
 
 export const MenuItem = ({
-    navigation,
+    drawer,
     icon,
     text,
     path,
     ...props
 }: MenuItemProps & PressableProps) => {
     const [clicked, setClicked] = useState<boolean>(false)
-    console.log(clicked)
+    const isActive = drawer.state.routes[drawer.state.index].name === path
+
     return (
         <Pressable
-            style={styles.menuLine}
             {...props}
-            onPress={() => navigation.navigate(path)}
+            onPress={() => drawer.navigation.navigate(path)}
             onPressIn={() => setClicked(true)}
             onPressOut={() => setClicked(false)}
         >
-            <View>
+            <View
+                style={{
+                    ...styles.menuLine,
+                    borderColor: isActive ? Colors.primary : Colors.black,
+                    backgroundColor: clicked || isActive ? Colors.violetDark : Colors.black,
+                }}
+            >
                 {icon}
                 <Text style={styles.text}>{text}</Text>
             </View>
@@ -42,14 +49,11 @@ const styles = StyleSheet.create({
         // textAlign: 'left',
     },
     menuLine: {
-        // width: '100%',
         flexDirection: 'row',
-        // flex: 1,
-        // justifyContent: 'flex-end',
-        justifyContent: 'flex-start',
-        height: 56,
-        gap: Gaps.g8,
-        // backgroundColor: Colors.red,
-        // borderWidth: 1,
+        paddingHorizontal: 24,
+        paddingVertical: 16,
+        gap: Gaps.g20,
+        borderRightWidth: 5,
+        // alignItems: 'center',
     },
 })

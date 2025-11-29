@@ -14,8 +14,8 @@ import ProfileIcon from '../../../../assets/icons/ProfileIcon'
 import { MenuItem } from '../MenuItem/MenuItem'
 
 const MENU = [
-    { text: 'Курсы', icon: <CourseIcon />, path: '/(app)' },
-    { text: 'Профиль', icon: <ProfileIcon />, path: '/profile' },
+    { text: 'Курсы', icon: <CourseIcon />, path: 'index' },
+    { text: 'Профиль', icon: <ProfileIcon />, path: 'profile' },
 ]
 
 export const CustomDrawer = (props: DrawerContentComponentProps) => {
@@ -40,7 +40,7 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
                 <View style={styles.menu}>
                     <UserMenu user={user} {...props} />
                     {MENU.map((menu) => (
-                        <MenuItem key={menu.path} {...menu} navigation={props.navigation} />
+                        <MenuItem key={menu.path} {...menu} drawer={props} />
                     ))}
                 </View>
             </View>
@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
     menu: {
         marginTop: 25,
         flex: 1,
-        backgroundColor: Colors.red,
+        // backgroundColor: Colors.red,
     },
 })

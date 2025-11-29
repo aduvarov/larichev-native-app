@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     // },
     container: {
         marginTop: 10,
+        marginBottom: 40,
         // justifyContent: 'center',
         alignItems: 'center',
         gap: Gaps.g16,

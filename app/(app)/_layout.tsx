@@ -32,7 +32,7 @@ export default function AppLayout() {
                     fontSize: Fonts.f20,
                 },
                 headerTitleAlign: 'center',
-                sceneContainerStyle: {
+                sceneStyle: {
                     backgroundColor: Colors.black,
                 },
             })}
@@ -41,6 +41,12 @@ export default function AppLayout() {
                 name="index"
                 options={{
                     title: 'Мои курсы',
+                }}
+            />
+            <Drawer.Screen
+                name="profile"
+                options={{
+                    title: 'Профиль',
                 }}
             />
         </Drawer>
