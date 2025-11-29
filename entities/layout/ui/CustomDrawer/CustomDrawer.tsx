@@ -9,6 +9,14 @@ import { loadProfileAtom } from '../../../user/model/user.state'
 import { useEffect } from 'react'
 import { UserMenu } from '../../../user/ui/UserMenu/UserMenu'
 import { User } from '../../../user/model/user.model'
+import CourseIcon from '../../../../assets/icons/CoursesIcon'
+import ProfileIcon from '../../../../assets/icons/ProfileIcon'
+import { MenuItem } from '../MenuItem/MenuItem'
+
+const MENU = [
+    { text: 'Курсы', icon: <CourseIcon />, path: '/(app)' },
+    { text: 'Профиль', icon: <ProfileIcon />, path: '/profile' },
+]
 
 export const CustomDrawer = (props: DrawerContentComponentProps) => {
     const logout = useSetAtom(logoutAtom)
@@ -29,8 +37,11 @@ export const CustomDrawer = (props: DrawerContentComponentProps) => {
                 <View>
                     <CloseDrawer {...props} />
                 </View>
-                <View>
-                    <UserMenu {...user} />
+                <View style={styles.menu}>
+                    <UserMenu user={user} {...props} />
+                    {MENU.map((menu) => (
+                        <MenuItem key={menu.path} {...menu} navigation={props.navigation} />
+                    ))}
                 </View>
             </View>
             <View style={styles.footer}>
@@ -51,8 +62,17 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.black,
     },
     content: { flex: 1 },
-    footer: { gap: 50, marginBottom: 40, alignItems: 'center' },
+    footer: {
+        gap: 50,
+        paddingBottom: 40,
+        alignItems: 'center',
+    },
     logo: {
         width: 160,
+    },
+    menu: {
+        marginTop: 25,
+        flex: 1,
+        backgroundColor: Colors.red,
     },
 })

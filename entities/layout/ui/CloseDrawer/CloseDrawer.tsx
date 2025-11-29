@@ -18,5 +18,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         position: 'absolute',
         right: 20,
+        // backgroundColor: 'blue',
     },
 })

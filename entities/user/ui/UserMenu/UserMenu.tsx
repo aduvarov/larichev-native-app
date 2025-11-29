@@ -1,8 +1,8 @@
 import { Image, StyleSheet, View, Text } from 'react-native'
-import { UserProfile } from '../../model/user.model'
 import { Colors, Fonts, Gaps } from '../../../../shared/tokens'
+import { UserMenuProps } from './UserMenu.props'
 
-export const UserMenu = (user: UserProfile) => {
+export const UserMenu = ({ user }: UserMenuProps) => {
     console.log(user)
     return (
         <View style={styles.container}>
@@ -25,11 +25,16 @@ export const UserMenu = (user: UserProfile) => {
 }
 
 const styles = StyleSheet.create({
+    // menu: {
+    //     flex: 1,
+    //     width: '100%',
+    // },
     container: {
-        marginTop: 30,
-        justifyContent: 'center',
+        marginTop: 10,
+        // justifyContent: 'center',
         alignItems: 'center',
         gap: Gaps.g16,
+        // flex: 1,
     },
     image: {
         width: 90,
