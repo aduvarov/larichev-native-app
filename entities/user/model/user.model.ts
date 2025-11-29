@@ -8,3 +8,5 @@ export interface User {
 export interface UserRequest {
     profile: User
 }
+
+export type UserProfile = Pick<User, 'name' | 'photo' | 'surname'>
