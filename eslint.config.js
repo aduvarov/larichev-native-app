@@ -88,7 +88,7 @@ export default [
             // ======================
             'react-native/no-unused-styles': 2, // Ошибка при неиспользуемых стилях
             'react-native/split-platform-components': 2, // Ошибка при использовании platform-specific компонентов без разделения
-            // 'react-native/no-inline-styles': 2, // Ошибка при inline-стилях (предпочитать StyleSheet)
+            'react-native/no-inline-styles': 2, // Ошибка при inline-стилях (предпочитать StyleSheet)
             'react-native/no-color-literals': 2, // Ошибка при использовании литералов цветов (предпочитать константы)
             'react-native/no-raw-text': 2, // Ошибка при использовании raw Text компонентов
             'react-native/no-single-element-style-arrays': 2, // Ошибка при массивах стилей с одним элементом
