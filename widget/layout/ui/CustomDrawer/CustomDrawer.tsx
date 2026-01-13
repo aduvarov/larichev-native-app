@@ -7,11 +7,11 @@ import { useAtom, useSetAtom } from 'jotai'
 import { logoutAtom } from '../../../../entities/auth/model/auth.state'
 import { loadProfileAtom } from '../../../../entities/user/model/user.state'
 import { useEffect } from 'react'
-import { UserMenu } from '../../../../entities/user/ui/UserMenu/UserMenu'
 import { User } from '../../../../entities/user/model/user.model'
 import CourseIcon from '../../../../assets/icons/CoursesIcon'
 import ProfileIcon from '../../../../assets/icons/ProfileIcon'
 import { MenuItem } from '../../../../entities/layout/ui/MenuItem/MenuItem'
+import { UserMenu } from '../../../user/ui/UserMenu/UserMenu'
 
 const MENU = [
     { text: 'Курсы', icon: <CourseIcon />, path: 'index' },
