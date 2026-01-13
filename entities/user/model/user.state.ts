@@ -10,6 +10,43 @@ export const profileAtom = atom<UserState>({
     error: null,
 })
 
+export const updateProfileAtom = atom(
+    async (get) => {
+        return get(profileAtom)
+    },
+    async (get, set, { photo }: { photo: string }) => {
+        const { accessToken } = await get(authAtom)
+        set(profileAtom, {
+            isLoading: true,
+            profile: null,
+            error: null,
+        })
+        try {
+            const { data } = await axios.patch<UserRequest>(
+                API.profile,
+                {
+                    photo,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                },
+            )
+            set(profileAtom, { isLoading: false, profile: data.profile, error: null })
+            console.log(get(profileAtom).profile)
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                set(profileAtom, {
+                    isLoading: false,
+                    profile: null,
+                    error: error.response?.data.message,
+                })
+            }
+        }
+    },
+)
+
 export const loadProfileAtom = atom(
     async (get) => {
         return get(profileAtom)
