@@ -1,5 +1,5 @@
 // import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Image, Dimensions } from 'react-native'
+import { StyleSheet, View, Image, Dimensions, KeyboardAvoidingView, Platform } from 'react-native'
 import { Input } from '../shared/Input/Input'
 import { Colors, Gaps } from '../shared/tokens'
 import { Button } from '../shared/Button/Button'
@@ -48,7 +48,10 @@ export default function Login() {
     return (
         <View style={styles.container}>
             <ErrorNotification error={localError} />
-            <View style={styles.content}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                style={styles.content}
+            >
                 <Image
                     style={styles.logo}
                     source={require('../assets/logo.png')}
@@ -89,7 +92,7 @@ export default function Login() {
                     <Button text={'Войти'} onPress={submit} isLoading={isLoading} />
                 </View>
                 <CustomLink href={'/restore'} text={'Восстановить пароль'} />
-            </View>
+            </KeyboardAvoidingView>
         </View>
     )
 }
