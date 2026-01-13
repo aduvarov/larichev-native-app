@@ -8,11 +8,11 @@ export const Input = (props: TextInputProps & { isPassword?: boolean }) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false)
 
     return (
-        <View>
+        <View style={props.style}>
             <TextInput
-                style={styles.input}
                 secureTextEntry={props.isPassword && !isPasswordVisible}
                 {...props}
+                style={styles.input}
                 placeholderTextColor={Colors.gray}
             />
             {props.isPassword && (

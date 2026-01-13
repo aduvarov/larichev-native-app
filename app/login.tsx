@@ -1,5 +1,5 @@
 // import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View, Image, Dimensions } from 'react-native'
 import { Input } from '../shared/Input/Input'
 import { Colors, Gaps } from '../shared/tokens'
 import { Button } from '../shared/Button/Button'
@@ -9,12 +9,16 @@ import { CustomLink } from '../shared/CustomLink/CustomLink'
 import { loginAtom } from '../entities/auth/model/auth.state'
 import { useAtom } from 'jotai'
 import { router } from 'expo-router'
+import { useScreenOrientation } from '../shared/hooks'
+import { Orientation } from 'expo-screen-orientation'
 
 export default function Login() {
     const [localError, setLocalError] = useState<string | undefined>() // Лоальное состояние для ошибок
     const [email, setEmail] = useState<string>('') // Состояние для хранения email
     const [password, setPassword] = useState<string>('') // Состояние для хранения пароля
     const [{ accessToken, isLoading, error }, login] = useAtom(loginAtom) // Вытаскиваем атом авторизации
+    const orientation = useScreenOrientation()
+    console.log('orientation: ', orientation)
 
     // Если случится ошибка, отобразить её
     useEffect(() => {
@@ -51,13 +55,37 @@ export default function Login() {
                     resizeMode="contain"
                 />
                 <View style={styles.form}>
-                    <Input placeholder="Email" onChangeText={setEmail} value={email} />
-                    <Input
-                        isPassword
-                        placeholder="Пароль"
-                        onChangeText={setPassword}
-                        value={password}
-                    />
+                    <View
+                        style={{
+                            flexDirection:
+                                orientation === Orientation.PORTRAIT_UP ? 'column' : 'row',
+                            gap: Gaps.g16,
+                        }}
+                    >
+                        <Input
+                            style={{
+                                width:
+                                    orientation === Orientation.PORTRAIT_UP
+                                        ? 'auto'
+                                        : Dimensions.get('window').width / 2 - 16 - 24,
+                            }}
+                            placeholder="Email"
+                            onChangeText={setEmail}
+                            value={email}
+                        />
+                        <Input
+                            style={{
+                                width:
+                                    orientation === Orientation.PORTRAIT_UP
+                                        ? 'auto'
+                                        : Dimensions.get('window').width / 2 - 16 - 24,
+                            }}
+                            isPassword
+                            placeholder="Пароль"
+                            onChangeText={setPassword}
+                            value={password}
+                        />
+                    </View>
                     <Button text={'Войти'} onPress={submit} isLoading={isLoading} />
                 </View>
                 <CustomLink href={'/restore'} text={'Восстановить пароль'} />
