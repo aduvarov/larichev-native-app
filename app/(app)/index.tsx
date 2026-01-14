@@ -1,15 +1,21 @@
 import { Text, View } from 'react-native'
 import { Colors } from '../../shared/tokens'
-import { useSetAtom } from 'jotai'
-import { logoutAtom } from '../../entities/auth/model/auth.state'
-import { Button } from '../../shared/Button/Button'
+import { useAtomValue, useSetAtom } from 'jotai'
+import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state'
+import { useEffect } from 'react'
 
 export default function AppLayout() {
-    const logout = useSetAtom(logoutAtom)
+    const { isLoading, error, courses } = useAtomValue(courseAtom)
+    const loadCourse = useSetAtom(loadCourseAtom)
+
+    useEffect(() => {
+        loadCourse()
+    }, [])
+
     return (
         <View>
             <Text style={{ color: Colors.primary }}> Мои курсы</Text>
-            <Button onPress={logout} text={'Выход'} />
+            {courses.length > 0 && courses.map((c) => <Text key={c.id}>{c.title}</Text>)}
         </View>
     )
 }
