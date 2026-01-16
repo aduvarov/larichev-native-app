@@ -31,4 +31,5 @@ export const Fonts = {
     f16: 16,
     f18: 18,
     f20: 20,
+    f21: 21,
 }

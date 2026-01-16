@@ -1,11 +1,11 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
-import { Colors, Radius } from '../../../../shared/tokens'
+import { Colors, Fonts, Gaps, Radius } from '../../../../shared/tokens'
 import { StudentCourseDescription } from '../../model/course.model'
 import { Button } from '../../../../shared/Button/Button'
 import { Chip } from '../../../../shared/Chip/Chip'
 
 export const CourseCard = ({
-    title,
+    shortTitle,
     image,
     courseOnDirection,
 }: Partial<StudentCourseDescription>) => {
@@ -13,7 +13,7 @@ export const CourseCard = ({
         <View style={styles.card}>
             <Image source={{ uri: image }} height={200} style={styles.image} />
             <View style={styles.header}>
-                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.title}>{shortTitle}</Text>
                 <View style={styles.chips}>
                     {courseOnDirection?.length > 0 &&
                         courseOnDirection?.map((c) => <Chip text={c.direction.name} />)}
@@ -32,9 +32,30 @@ const styles = StyleSheet.create({
         borderRadius: Radius.r10,
         backgroundColor: Colors.blackLight,
     },
-    image: {},
-    title: {},
-    chips: {},
-    header: {},
-    footer: {},
+    image: {
+        borderRadius: 10,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+    },
+    title: {
+        fontSize: Fonts.f21,
+        color: Colors.white,
+        fontFamily: Fonts.regular,
+        marginBottom: 12,
+    },
+    chips: {
+        flexDirection: 'row',
+        gap: Gaps.g8,
+    },
+    header: {
+        paddingHorizontal: 24,
+        paddingVertical: 18,
+    },
+    footer: {
+        backgroundColor: Colors.violetDark,
+        paddingHorizontal: 24,
+        paddingVertical: 20,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
+    },
 })

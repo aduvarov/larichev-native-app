@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import { Gaps } from '../../shared/tokens'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state'
@@ -15,9 +15,11 @@ export default function AppLayout() {
     }, [])
 
     return (
-        <View style={styles.wrapper}>
-            {courses.length > 0 && courses.map((c) => <CourseCard {...c} key={c.id} />)}
-        </View>
+        <ScrollView>
+            <View style={styles.wrapper}>
+                {courses.length > 0 && courses.map((c) => <CourseCard {...c} key={c.id} />)}
+            </View>
+        </ScrollView>
     )
 }
 
