@@ -2,7 +2,7 @@ import { atom } from 'jotai'
 import { authAtom } from '../../auth/model/auth.state'
 import axios, { AxiosError } from 'axios'
 import { API } from '../api/api'
-import { CourcesResponse, StudentCourseDescription } from './course.model'
+import { MyCoursesResponse, OtherCoursesResponse, StudentCourseDescription } from './course.model'
 
 export const courseAtom = atom<CourseState>({
     courses: [],
@@ -22,12 +22,12 @@ export const loadCourseAtom = atom(
             error: null,
         })
         try {
-            const { data } = await axios.get<CourcesResponse>(API.my, {
+            const { data } = await axios.get<OtherCoursesResponse>(API.my, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
             })
-            set(courseAtom, { isLoading: false, courses: data.my, error: null })
+            set(courseAtom, { isLoading: false, courses: data.other, error: null })
         } catch (error) {
             console.error('ERROR! Axios')
             if (error instanceof AxiosError) {

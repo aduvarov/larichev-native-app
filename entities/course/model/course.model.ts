@@ -4,8 +4,12 @@ export interface Progress {
     userViewedLessonsCount: number
 }
 
-export type CourcesResponse = {
+export type MyCoursesResponse = {
     my: StudentCourseDescription[]
+}
+
+export type OtherCoursesResponse = {
+    other: StudentCourseDescription[]
 }
 
 export type StudentCourseDescription = {

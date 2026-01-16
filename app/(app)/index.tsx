@@ -1,13 +1,14 @@
-import { FlatList, StyleSheet, View } from 'react-native'
+import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, View } from 'react-native'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state'
 import { useEffect } from 'react'
 import { CourseCard } from '../../entities/course/ui/CourseCard/CourseCard'
 import { StudentCourseDescription } from '../../entities/course/model/course.model'
+import { Colors } from '../../shared/tokens'
 
 export default function AppLayout() {
-    // const { isLoading, error, courses } = useAtomValue(courseAtom)
-    const { courses } = useAtomValue(courseAtom)
+    // const { , error, courses } = useAtomValue(courseAtom)
+    const { isLoading, courses } = useAtomValue(courseAtom)
     const loadCourse = useSetAtom(loadCourseAtom)
 
     useEffect(() => {
@@ -24,8 +25,19 @@ export default function AppLayout() {
 
     return (
         <>
+            {isLoading && (
+                <ActivityIndicator style={styles.activity} size="large" color={Colors.primary} />
+            )}
             {courses.length > 0 && (
                 <FlatList
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={isLoading}
+                            onRefresh={loadCourse}
+                            tintColor={Colors.primary}
+                            titleColor={Colors.primary}
+                        />
+                    }
                     data={courses}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={renderCourse}
@@ -38,5 +50,8 @@ export default function AppLayout() {
 const styles = StyleSheet.create({
     item: {
         padding: 20,
+    },
+    activity: {
+        marginTop: 30,
     },
 })
