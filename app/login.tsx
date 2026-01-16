@@ -17,8 +17,8 @@ export default function Login() {
     const [email, setEmail] = useState<string>('') // Состояние для хранения email
     const [password, setPassword] = useState<string>('') // Состояние для хранения пароля
     const [{ accessToken, isLoading, error }, login] = useAtom(loginAtom) // Вытаскиваем атом авторизации
-    const orientation = useScreenOrientation()
-    console.log('orientation: ', orientation)
+    // const orientation = useScreenOrientation()
+    // console.log('orientation: ', orientation)
 
     // Если случится ошибка, отобразить её
     useEffect(() => {
@@ -48,51 +48,50 @@ export default function Login() {
     return (
         <View style={styles.container}>
             <ErrorNotification error={localError} />
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            {/* <KeyboardAvoidingView
+                // behavior={Platform.OS === 'ios' ? 'padding' : ''}
                 style={styles.content}
-            >
-                <Image
-                    style={styles.logo}
-                    source={require('../assets/logo.png')}
-                    resizeMode="contain"
-                />
-                <View style={styles.form}>
-                    <View
-                        style={{
-                            flexDirection:
-                                orientation === Orientation.PORTRAIT_UP ? 'column' : 'row',
-                            gap: Gaps.g16,
-                        }}
-                    >
-                        <Input
-                            style={{
-                                width:
-                                    orientation === Orientation.PORTRAIT_UP
-                                        ? 'auto'
-                                        : Dimensions.get('window').width / 2 - 16 - 24,
-                            }}
-                            placeholder="Email"
-                            onChangeText={setEmail}
-                            value={email}
-                        />
-                        <Input
-                            style={{
-                                width:
-                                    orientation === Orientation.PORTRAIT_UP
-                                        ? 'auto'
-                                        : Dimensions.get('window').width / 2 - 16 - 24,
-                            }}
-                            isPassword
-                            placeholder="Пароль"
-                            onChangeText={setPassword}
-                            value={password}
-                        />
-                    </View>
-                    <Button text={'Войти'} onPress={submit} isLoading={isLoading} />
+            > */}
+            <Image
+                style={styles.logo}
+                source={require('../assets/logo.png')}
+                resizeMode="contain"
+            />
+            <View style={styles.form}>
+                <View
+                    style={{
+                        // flexDirection: orientation === Orientation.PORTRAIT_UP ? 'column' : 'row',
+                        gap: Gaps.g16,
+                    }}
+                >
+                    <Input
+                        // style={{
+                        //     width:
+                        //         orientation === Orientation.PORTRAIT_UP
+                        //             ? 'auto'
+                        //             : Dimensions.get('window').width / 2 - 16 - 24,
+                        // }}
+                        placeholder="Email"
+                        onChangeText={setEmail}
+                        value={email}
+                    />
+                    <Input
+                        // style={{
+                        //     width:
+                        //         orientation === Orientation.PORTRAIT_UP
+                        //             ? 'auto'
+                        //             : Dimensions.get('window').width / 2 - 16 - 24,
+                        // }}
+                        isPassword
+                        placeholder="Пароль"
+                        onChangeText={setPassword}
+                        value={password}
+                    />
                 </View>
-                <CustomLink href={'/restore'} text={'Восстановить пароль'} />
-            </KeyboardAvoidingView>
+                <Button text={'Войти'} onPress={submit} isLoading={isLoading} />
+            </View>
+            <CustomLink href={'/restore'} text={'Восстановить пароль'} />
+            {/* </KeyboardAvoidingView> */}
         </View>
     )
 }
@@ -104,10 +103,10 @@ const styles = StyleSheet.create({
         padding: 55,
         backgroundColor: Colors.black,
     },
-    content: {
-        alignItems: 'center',
-        gap: Gaps.g50,
-    },
+    // content: {
+    //     alignItems: 'center',
+    //     gap: Gaps.g50,
+    // },
     form: {
         alignSelf: 'stretch',
         gap: Gaps.g16,

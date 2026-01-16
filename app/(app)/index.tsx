@@ -1,11 +1,13 @@
-import { Text, View } from 'react-native'
-import { Colors } from '../../shared/tokens'
+import { StyleSheet, View } from 'react-native'
+import { Gaps } from '../../shared/tokens'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state'
 import { useEffect } from 'react'
+import { CourseCard } from '../../entities/course/ui/CourseCard/CourseCard'
 
 export default function AppLayout() {
-    const { isLoading, error, courses } = useAtomValue(courseAtom)
+    // const { isLoading, error, courses } = useAtomValue(courseAtom)
+    const { courses } = useAtomValue(courseAtom)
     const loadCourse = useSetAtom(loadCourseAtom)
 
     useEffect(() => {
@@ -13,9 +15,16 @@ export default function AppLayout() {
     }, [])
 
     return (
-        <View>
-            <Text style={{ color: Colors.primary }}> Мои курсы</Text>
-            {courses.length > 0 && courses.map((c) => <Text key={c.id}>{c.title}</Text>)}
+        <View style={styles.wrapper}>
+            {courses.length > 0 && courses.map((c) => <CourseCard {...c} key={c.id} />)}
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    wrapper: {
+        flexDirection: 'column',
+        gap: Gaps.g20,
+        padding: 20,
+    },
+})
