@@ -1,10 +1,11 @@
 import { Image, Linking, StyleSheet, Text, View } from 'react-native'
 import { Colors, Fonts, Gaps, Radius } from '../../../../shared/tokens'
-import { StudentCourseDescription } from '../../model/course.model'
+import { StudentCourseDescription } from '../../../../entities/course/model/course.model'
 import { Button } from '../../../../shared/Button/Button'
 import { Chip } from '../../../../shared/Chip/Chip'
 import MaskedView from '@react-native-masked-view/masked-view'
 import { LinearGradient } from 'expo-linear-gradient'
+import { CourseProgress } from '../../../../entities/course/ui/CourseProgress/CourseProgress'
 
 export const CourseCard = ({
     id,
@@ -14,13 +15,15 @@ export const CourseCard = ({
     alias,
     tariffs,
 }: Partial<StudentCourseDescription>) => {
+    courseOnDirection = courseOnDirection ?? []
     return (
         <View style={styles.card}>
             <Image source={{ uri: image }} height={200} style={styles.image} />
             <View style={styles.header}>
+                <CourseProgress totalLessons={120} passedLessons={40} />
                 <Text style={styles.title}>{shortTitle}</Text>
                 <View style={styles.chips}>
-                    {courseOnDirection?.length &&
+                    {courseOnDirection.length > 0 &&
                         courseOnDirection?.map((c) => <Chip text={c.direction.name} key={id} />)}
                 </View>
                 <MaskedView

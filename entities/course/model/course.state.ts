@@ -2,7 +2,7 @@ import { atom } from 'jotai'
 import { authAtom } from '../../auth/model/auth.state'
 import axios, { AxiosError } from 'axios'
 import { API } from '../api/api'
-import { MyCoursesResponse, OtherCoursesResponse, StudentCourseDescription } from './course.model'
+import { OtherCoursesResponse, StudentCourseDescription } from './course.model'
 
 export const courseAtom = atom<CourseState>({
     courses: [],
