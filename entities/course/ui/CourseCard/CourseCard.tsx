@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, Linking, StyleSheet, Text, View } from 'react-native'
 import { Colors, Fonts, Gaps, Radius } from '../../../../shared/tokens'
 import { StudentCourseDescription } from '../../model/course.model'
 import { Button } from '../../../../shared/Button/Button'
@@ -8,6 +8,7 @@ export const CourseCard = ({
     shortTitle,
     image,
     courseOnDirection,
+    alias,
 }: Partial<StudentCourseDescription>) => {
     return (
         <View style={styles.card}>
@@ -20,7 +21,10 @@ export const CourseCard = ({
                 </View>
             </View>
             <View style={styles.footer}>
-                <Button text="Купить" />
+                <Button
+                    text="Купить"
+                    onPress={() => Linking.openURL(`http://purpleschool.ru/course/${alias}`)}
+                />
             </View>
         </View>
     )
