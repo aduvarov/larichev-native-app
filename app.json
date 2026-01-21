@@ -41,6 +41,13 @@
         }
       ],
       [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification_icon.png",
+          "color": "#16171D"
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "backgroundColor": "#ffffff",
