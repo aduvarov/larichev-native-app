@@ -25,7 +25,29 @@ export default function AppLayout() {
         )
     }
 
-    const scheduleNotification = () => {
+    const allowsNotification = async () => {
+        const settings = await Notifications.getPermissionsAsync()
+        return (
+            settings.granted ||
+            settings.ios?.status == Notifications.IosAuthorizationStatus.PROVISIONAL
+        )
+    }
+
+    const requestPermissions = async () => {
+        return Notifications.requestPermissionsAsync({
+            ios: {
+                allowAlert: true,
+                allowBadge: true,
+                allowSound: true,
+            },
+        })
+    }
+
+    const scheduleNotification = async () => {
+        const granted = await allowsNotification()
+        if (!granted) {
+            await requestPermissions()
+        }
         Notifications.scheduleNotificationAsync({
             content: {
                 title: 'Не забудь пройти курс',
