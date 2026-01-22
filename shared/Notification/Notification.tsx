@@ -13,11 +13,18 @@ export function Notification() {
     })
 
     useEffect(() => {
-        const sub = Notifications.addNotificationReceivedListener((notification) => {
+        const subRecieved = Notifications.addNotificationReceivedListener((notification) => {
             console.log(notification.request.content.data)
         })
+        const subResponseRecieved = Notifications.addNotificationResponseReceivedListener(
+            (notification) => {
+                console.log('CLICKED!')
+                console.log(notification.notification.request.content.data)
+            },
+        )
         return () => {
-            sub.remove()
+            subRecieved.remove()
+            subResponseRecieved.remove()
         }
     }, [])
     return <></>
