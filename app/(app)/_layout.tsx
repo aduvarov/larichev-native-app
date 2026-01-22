@@ -7,17 +7,6 @@ import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton'
 import { CustomDrawer } from '../../widget/layout/ui/CustomDrawer/CustomDrawer'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { StyleSheet } from 'react-native'
-import * as Notifications from 'expo-notifications'
-
-Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-        shouldPlaySound: true,
-        shouldSetBadge: true,
-        shouldShowAlert: true,
-        shouldShowBanner: true,
-        shouldShowList: true,
-    }),
-})
 
 export default function AppLayout() {
     const { accessToken } = useAtomValue(authAtom)
