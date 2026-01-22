@@ -7,6 +7,8 @@ import { StudentCourseDescription } from '../../entities/course/model/course.mod
 import { Colors } from '../../shared/tokens'
 import { Button } from '../../shared/Button/Button'
 import * as Notifications from 'expo-notifications'
+import * as Device from 'expo-device'
+import Constants from 'expo-constants'
 
 export default function AppLayout() {
     // const { , error, courses } = useAtomValue(courseAtom)
@@ -47,6 +49,12 @@ export default function AppLayout() {
         const granted = await allowsNotification()
         if (!granted) {
             await requestPermissions()
+        }
+        if (Device.isDevice) {
+            const token = await Notifications.getExpoPushTokenAsync({
+                projectId: Constants.expoConfig?.extra?.eas.proectId,
+            })
+            console.log(token)
         }
         Notifications.scheduleNotificationAsync({
             content: {
