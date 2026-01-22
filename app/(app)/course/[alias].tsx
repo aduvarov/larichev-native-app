@@ -7,7 +7,7 @@ export default function CoursePage() {
     console.log('alias: ', alias)
     return (
         <View>
-            <Text style={{ color: Colors.black }}>Страница курса по {alias}</Text>
+            <Text style={{ color: Colors.white }}>Страница курса по {alias}</Text>
         </View>
     )
 }

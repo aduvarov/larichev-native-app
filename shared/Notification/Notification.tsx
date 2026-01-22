@@ -1,7 +1,9 @@
 import * as Notifications from 'expo-notifications'
+import { useRouter } from 'expo-router'
 import { useEffect } from 'react'
 
 export function Notification() {
+    const router = useRouter()
     Notifications.setNotificationHandler({
         handleNotification: async () => ({
             shouldPlaySound: true,
@@ -20,6 +22,8 @@ export function Notification() {
             (notification) => {
                 console.log('CLICKED!')
                 console.log(notification.notification.request.content.data)
+                const alias = notification.notification.request.content.data.alias
+                router.push(`(app)/course/${alias}`)
             },
         )
         return () => {

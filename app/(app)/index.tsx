@@ -50,10 +50,10 @@ export default function AppLayout() {
         }
         Notifications.scheduleNotificationAsync({
             content: {
-                title: 'Не забудь пройти курс',
-                body: 'Не забывай учиться каждый день!',
+                title: 'Новый курс TypeScript',
+                body: 'Начни учиться уже сейчас!',
                 data: {
-                    success: true,
+                    alias: 'typescript',
                 },
             },
             trigger: {
